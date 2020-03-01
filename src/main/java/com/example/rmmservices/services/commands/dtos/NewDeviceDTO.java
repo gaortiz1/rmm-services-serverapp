@@ -3,6 +3,7 @@ package com.example.rmmservices.services.commands.dtos;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Getter
@@ -15,10 +16,10 @@ public class NewDeviceDTO implements Serializable {
     @NotEmpty
     private String systemName;
 
-    @NotEmpty
+    @NotNull
     private Long deviceTypeId;
 
-    @NotEmpty
+    @NotNull
     private Long customerId;
 
 }

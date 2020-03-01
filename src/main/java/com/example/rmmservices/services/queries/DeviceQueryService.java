@@ -1,6 +1,7 @@
 package com.example.rmmservices.services.queries;
 
 import com.example.rmmservices.exceptions.CustomerNotFoundException;
+import com.example.rmmservices.models.Device;
 import com.example.rmmservices.repositories.DeviceRepository;
 import com.example.rmmservices.services.queries.dtos.DeviceDTO;
 import com.example.rmmservices.services.queries.mappers.DeviceMapper;
@@ -25,8 +26,8 @@ public class DeviceQueryService {
         return DeviceMapper.toDTO(this.deviceRepository.findByCustomer_Id(id));
     }
 
-    public DeviceDTO findById(UUID uuid) {
-        return DeviceMapper.toDTO(this.deviceRepository.findById(uuid)
-                .orElseThrow(CustomerNotFoundException::new));
+    public DeviceDTO findById(Long id) {
+        return DeviceMapper.toDTO(this.deviceRepository.findById(id)
+                .orElse(Device.builder().build()));
     }
 }

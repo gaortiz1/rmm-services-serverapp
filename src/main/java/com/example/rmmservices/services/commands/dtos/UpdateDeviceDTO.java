@@ -3,6 +3,7 @@ package com.example.rmmservices.services.commands.dtos;
 import lombok.*;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -13,8 +14,8 @@ import java.util.UUID;
 @AllArgsConstructor
 public class UpdateDeviceDTO implements Serializable {
 
-    @NotEmpty
-    private UUID deviceId;
+    @NotNull
+    private Long deviceId;
 
     @NotEmpty
     private String systemName;

@@ -23,7 +23,7 @@ public class DeviceQueryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<DeviceDTO> findById(@PathVariable UUID id) {
+    public ResponseEntity<DeviceDTO> findById(@PathVariable Long id) {
         log.info("Getting device {}", id);
         return ResponseEntity.ok(this.deviceQueryService.findById(id));
     }

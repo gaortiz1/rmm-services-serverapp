@@ -10,7 +10,7 @@ import java.util.UUID;
 
 @Slf4j
 @Service
-public class DeleteDeviceService implements CommandService<UUID> {
+public class DeleteDeviceService implements CommandService<Long> {
 
     private final DeviceRepository deviceRepository;
 
@@ -20,7 +20,7 @@ public class DeleteDeviceService implements CommandService<UUID> {
     }
 
     @Override
-    public Void handle(UUID deviceId) {
+    public Void handle(Long deviceId) {
 
         this.deviceRepository.findById(deviceId)
                 .orElseThrow(DeviceNotFoundException::new);

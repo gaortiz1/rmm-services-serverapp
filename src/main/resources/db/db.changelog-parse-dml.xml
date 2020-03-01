@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet id="1-schema-rmm-services" author="gabriel_260388@hotmail.com">
+        <sql dbms="postgresql" endDelimiter=";">
+            CREATE SCHEMA services
+        </sql>
+    </changeSet>
+
+    <changeSet id="1-devices" author="gabriel_260388@hotmail.com" context="createtable">
+        <preConditions onFail="CONTINUE">
+            <not>
+                <tableExists tableName="devices" schemaName="services"/>
+            </not>
+        </preConditions>
+        <createTable tableName="devices" schemaName="services">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="system_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement columnDataType="BIGINT"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="services"
+                          startWith="100"
+                          tableName="devices"/>
+    </changeSet>
+
+    <changeSet id="1-customers" author="gabriel_260388@hotmail.com" context="createtable">
+        <preConditions onFail="CONTINUE">
+            <not>
+                <tableExists tableName="customers" schemaName="services"/>
+            </not>
+        </preConditions>
+        <createTable tableName="customers" schemaName="services">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement columnDataType="BIGINT"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="services"
+                          startWith="100"
+                          tableName="customers"/>
+    </changeSet>
+
+    <changeSet id="1-devices_type" author="gabriel_260388@hotmail.com" context="createtable">
+        <preConditions onFail="CONTINUE">
+            <not>
+                <tableExists tableName="devices_type" schemaName="services"/>
+            </not>
+        </preConditions>
+        <createTable tableName="devices_type" schemaName="services">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="gabriel_260388@hotmail.com" id="1-primary-key-devices">
+        <addPrimaryKey columnNames="id, type_id, customer_id"
+                       constraintName="pk_devices"
+                       schemaName="services"
+                       tableName="devices"/>
+    </changeSet>
+
+    <changeSet author="liquibase-docs" id="1-fk-devices">
+        <addForeignKeyConstraint baseColumnNames="type_id"
+                                 baseTableName="devices"
+                                 baseTableSchemaName="services"
+                                 constraintName="fk_devices_type_devices"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="devices_type"
+                                 referencedTableSchemaName="services"/>
+        <addForeignKeyConstraint baseColumnNames="customer_id"
+                                 baseTableName="devices"
+                                 baseTableSchemaName="services"
+                                 constraintName="fk_devices_customers"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="customers"
+                                 referencedTableSchemaName="services"/>
+    </changeSet>
+
+</databaseChangeLog>

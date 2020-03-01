@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "smart_services")
+@Table(name = "smart_services", schema = "services")
 public class SmartService implements Serializable {
 
     @Id

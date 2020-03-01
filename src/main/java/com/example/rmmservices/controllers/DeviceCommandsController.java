@@ -38,7 +38,7 @@ public class DeviceCommandsController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateDevice(@PathVariable UUID id, @Valid @RequestBody UpdateDeviceDTO updateDeviceDTO) {
+    public ResponseEntity<Void> updateDevice(@PathVariable Long id, @Valid @RequestBody UpdateDeviceDTO updateDeviceDTO) {
         log.info("Update device: {}, {}", id, updateDeviceDTO);
 
         updateDeviceDTO.setDeviceId(id);
@@ -46,7 +46,7 @@ public class DeviceCommandsController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteDevice(@PathVariable UUID id) {
+    public ResponseEntity<Void> deleteDevice(@PathVariable Long id) {
         log.info("Delete device {}", id);
 
         return ResponseEntity.ok(this.deleteDeviceService.handle(id));

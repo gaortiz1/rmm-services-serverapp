@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: rmm-service
+  profiles:
+    active: prod
+  datasource:
+    url: jdbc:postgresql://${PG_HOST:localhost}:5432/${PG_DATABASE:rmm-services}
+    username: ${PG_USERNAME:postgres}
+    password: ${PG_PASSWORD:admin}
+    platform: POSTGRESQL
+    driver-class-name: org.postgresql.Driver
+    jpa.properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+  jpa.properties.hibernate:
+    temp.use_jdbc_metadata_defaults: false
+    show-sql: true
+  liquibase:
+    change-log: classpath:db/db.changelog-master.xml
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
