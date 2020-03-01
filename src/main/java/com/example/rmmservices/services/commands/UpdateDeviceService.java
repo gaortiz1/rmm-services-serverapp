@@ -1,9 +1,9 @@
-package com.example.rmmservices.services;
+package com.example.rmmservices.services.commands;
 
 import com.example.rmmservices.exceptions.DeviceNotFoundException;
 import com.example.rmmservices.models.Device;
 import com.example.rmmservices.repositories.DeviceRepository;
-import com.example.rmmservices.services.dtos.UpdateDeviceDTO;
+import com.example.rmmservices.services.commands.dtos.UpdateDeviceDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

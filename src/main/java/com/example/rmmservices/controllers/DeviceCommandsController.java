@@ -1,10 +1,10 @@
 package com.example.rmmservices.controllers;
 
-import com.example.rmmservices.services.CreateDeviceService;
-import com.example.rmmservices.services.DeleteDeviceService;
-import com.example.rmmservices.services.UpdateDeviceService;
-import com.example.rmmservices.services.dtos.NewDeviceDTO;
-import com.example.rmmservices.services.dtos.UpdateDeviceDTO;
+import com.example.rmmservices.services.commands.CreateDeviceService;
+import com.example.rmmservices.services.commands.DeleteDeviceService;
+import com.example.rmmservices.services.commands.UpdateDeviceService;
+import com.example.rmmservices.services.commands.dtos.NewDeviceDTO;
+import com.example.rmmservices.services.commands.dtos.UpdateDeviceDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @Slf4j
 @RestController
 @RequestMapping("devices")
-public class DeviceController {
+public class DeviceCommandsController {
 
     private final CreateDeviceService createDeviceService;
 
@@ -25,7 +25,7 @@ public class DeviceController {
     private final DeleteDeviceService deleteDeviceService;
 
     @Autowired
-    public DeviceController(CreateDeviceService createDeviceService, UpdateDeviceService updateDeviceService, DeleteDeviceService deleteDeviceService) {
+    public DeviceCommandsController(CreateDeviceService createDeviceService, UpdateDeviceService updateDeviceService, DeleteDeviceService deleteDeviceService) {
         this.createDeviceService = createDeviceService;
         this.updateDeviceService = updateDeviceService;
         this.deleteDeviceService = deleteDeviceService;

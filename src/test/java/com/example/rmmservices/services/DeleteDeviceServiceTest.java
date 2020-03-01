@@ -3,6 +3,7 @@ package com.example.rmmservices.services;
 import com.example.rmmservices.exceptions.DeviceNotFoundException;
 import com.example.rmmservices.models.Device;
 import com.example.rmmservices.repositories.DeviceRepository;
+import com.example.rmmservices.services.commands.DeleteDeviceService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

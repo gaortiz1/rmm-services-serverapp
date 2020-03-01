@@ -1,4 +1,4 @@
-package com.example.rmmservices.services.dtos;
+package com.example.rmmservices.services.commands.dtos;
 
 import lombok.*;
 

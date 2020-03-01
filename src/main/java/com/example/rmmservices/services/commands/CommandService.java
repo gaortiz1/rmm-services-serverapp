@@ -1,4 +1,4 @@
-package com.example.rmmservices.services;
+package com.example.rmmservices.services.commands;
 
 public interface CommandService<T> {
 
