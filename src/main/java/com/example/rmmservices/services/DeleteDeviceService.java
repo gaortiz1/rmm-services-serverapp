@@ -22,7 +22,7 @@ public class DeleteDeviceService implements CommandService<UUID> {
     }
 
     @Override
-    public Void execute(UUID deviceId) {
+    public Void handle(UUID deviceId) {
 
         this.deviceRepository.findById(deviceId)
                 .orElseThrow(DeviceNotFoundException::new);

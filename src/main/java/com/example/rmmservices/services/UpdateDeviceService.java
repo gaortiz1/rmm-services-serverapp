@@ -20,7 +20,7 @@ public class UpdateDeviceService implements CommandService<UpdateDeviceDTO> {
     }
 
     @Override
-    public Void execute(UpdateDeviceDTO updateDeviceDTO) {
+    public Void handle(UpdateDeviceDTO updateDeviceDTO) {
 
         log.debug("updating device: {}", updateDeviceDTO);
 

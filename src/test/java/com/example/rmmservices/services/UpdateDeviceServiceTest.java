@@ -38,7 +38,7 @@ class UpdateDeviceServiceTest {
         UUID deviceId = UUID.randomUUID();
         when(this.deviceRepository.findById(any(UUID.class))).thenReturn(Optional.of(currentDevice(deviceId)));
 
-        this.updateDeviceService.execute(new UpdateDeviceDTO(deviceId, "new-pc-home"));
+        this.updateDeviceService.handle(new UpdateDeviceDTO(deviceId, "new-pc-home"));
 
         verify(this.deviceRepository).save(deviceCaptor.capture());
         assertEquals("new-pc-home", deviceCaptor.getValue().getSystemName());
@@ -50,7 +50,7 @@ class UpdateDeviceServiceTest {
         when(this.deviceRepository.findById(any(UUID.class))).thenReturn(Optional.empty());
 
         assertThrows(DeviceNotFoundException.class,
-                () -> updateDeviceService.execute(new UpdateDeviceDTO(UUID.randomUUID(), "new-pc-home")));
+                () -> updateDeviceService.handle(new UpdateDeviceDTO(UUID.randomUUID(), "new-pc-home")));
     }
 
     private Device currentDevice(UUID id) {

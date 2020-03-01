@@ -30,7 +30,7 @@ class DeleteDeviceServiceTest {
         UUID deviceId = UUID.randomUUID();
         when(this.deviceRepository.findById(any(UUID.class))).thenReturn(Optional.of(currentDevice(deviceId)));
 
-        this.deleteDeviceService.execute(deviceId);
+        this.deleteDeviceService.handle(deviceId);
 
         verify(this.deviceRepository).deleteById(deviceId);
     }
@@ -40,7 +40,7 @@ class DeleteDeviceServiceTest {
         when(this.deviceRepository.findById(any(UUID.class))).thenReturn(Optional.empty());
 
         assertThrows(DeviceNotFoundException.class,
-                () -> deleteDeviceService.execute(UUID.randomUUID()));
+                () -> deleteDeviceService.handle(UUID.randomUUID()));
 
         verify(this.deviceRepository, never()).deleteById(any(UUID.class));
     }

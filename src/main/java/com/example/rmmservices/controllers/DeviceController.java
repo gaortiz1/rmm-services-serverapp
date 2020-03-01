@@ -34,7 +34,7 @@ public class DeviceController {
     @PostMapping
     public ResponseEntity<Void> createDevice(@Valid @RequestBody NewDeviceDTO newDeviceDTO) {
         log.info("create device: {}", newDeviceDTO);
-        return ResponseEntity.ok(this.createDeviceService.execute(newDeviceDTO));
+        return ResponseEntity.ok(this.createDeviceService.handle(newDeviceDTO));
     }
 
     @PutMapping("/{id}")
@@ -42,13 +42,13 @@ public class DeviceController {
         log.info("Update device: {}, {}", id, updateDeviceDTO);
 
         updateDeviceDTO.setDeviceId(id);
-        return ResponseEntity.ok(this.updateDeviceService.execute(updateDeviceDTO));
+        return ResponseEntity.ok(this.updateDeviceService.handle(updateDeviceDTO));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDevice(@PathVariable UUID id) {
         log.info("Delete device {}", id);
 
-        return ResponseEntity.ok(this.deleteDeviceService.execute(id));
+        return ResponseEntity.ok(this.deleteDeviceService.handle(id));
     }
 }

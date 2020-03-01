@@ -33,7 +33,7 @@ public class CreateDeviceService implements CommandService<NewDeviceDTO> {
     }
 
     @Override
-    public Void execute(@Valid NewDeviceDTO newDeviceDTO) {
+    public Void handle(@Valid NewDeviceDTO newDeviceDTO) {
 
         log.debug("Saving new device: {}", newDeviceDTO);
 

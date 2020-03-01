@@ -47,7 +47,7 @@ class CreateDeviceServiceTest {
         when(this.customerRepository.findById(anyLong())).thenReturn(Optional.of(newCustomer("customer one")));
         when(this.deviceTypeRepository.findById(anyLong())).thenReturn(Optional.of(newWindowsWorkstation()));
 
-        createDeviceService.execute(new NewDeviceDTO("pc-one", 1l, 1l));
+        createDeviceService.handle(new NewDeviceDTO("pc-one", 1l, 1l));
 
         verify(deviceRepository).save(deviceCaptor.capture());
         assertAll("assert ",
@@ -63,7 +63,7 @@ class CreateDeviceServiceTest {
         when(this.customerRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         assertThrows(CustomerNotFoundException.class,
-                () -> createDeviceService.execute(new NewDeviceDTO("pc-one", 1l, 1l)));
+                () -> createDeviceService.handle(new NewDeviceDTO("pc-one", 1l, 1l)));
     }
 
     @Test
@@ -73,7 +73,7 @@ class CreateDeviceServiceTest {
         when(this.deviceTypeRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         assertThrows(DeviceTypeNotFoundException.class,
-                () -> createDeviceService.execute(new NewDeviceDTO("pc-one", 1l, 1l)));
+                () -> createDeviceService.handle(new NewDeviceDTO("pc-one", 1l, 1l)));
     }
 
     private Customer newCustomer(String name) {
