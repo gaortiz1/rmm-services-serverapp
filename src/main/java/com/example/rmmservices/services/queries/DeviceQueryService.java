@@ -1,15 +1,11 @@
 package com.example.rmmservices.services.queries;
 
-import com.example.rmmservices.exceptions.CustomerNotFoundException;
 import com.example.rmmservices.models.Device;
 import com.example.rmmservices.repositories.DeviceRepository;
 import com.example.rmmservices.services.queries.dtos.DeviceDTO;
 import com.example.rmmservices.services.queries.mappers.DeviceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.UUID;
 
 @Service
 public class DeviceQueryService {
@@ -19,11 +15,6 @@ public class DeviceQueryService {
     @Autowired
     public DeviceQueryService(DeviceRepository deviceRepository) {
         this.deviceRepository = deviceRepository;
-    }
-
-
-    public List<DeviceDTO> findByCustomerId(Long id) {
-        return DeviceMapper.toDTO(this.deviceRepository.findByCustomer_Id(id));
     }
 
     public DeviceDTO findById(Long id) {

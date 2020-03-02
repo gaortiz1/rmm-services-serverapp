@@ -4,12 +4,14 @@ import com.example.rmmservices.services.commands.AddServiceCommandService;
 import com.example.rmmservices.services.commands.DeleteServiceCommandService;
 import com.example.rmmservices.services.commands.dtos.DeleteServiceDTO;
 import com.example.rmmservices.services.commands.dtos.NewServiceDTO;
+import com.example.rmmservices.services.queries.dtos.ServiceDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -28,16 +30,15 @@ public class ServiceController {
 
 
     @PostMapping
-    public ResponseEntity<Void> add(@Valid @RequestBody NewServiceDTO newServiceDTO) {
+    public ResponseEntity<Void> addService(@Valid @RequestBody NewServiceDTO newServiceDTO) {
         log.info("add ser: {}", newServiceDTO);
         return ResponseEntity.ok(this.addServiceCommandService.handle(newServiceDTO));
     }
 
-    @DeleteMapping()
-    public ResponseEntity<Void> deleteDevice(@Valid @RequestBody DeleteServiceDTO deleteServiceDTO) {
+    @DeleteMapping
+    public ResponseEntity<Void> deleteService(@Valid @RequestBody DeleteServiceDTO deleteServiceDTO) {
         log.info("Delete device {}", deleteServiceDTO);
 
         return ResponseEntity.ok(this.deleteDeviceCommandService.handle(deleteServiceDTO));
     }
-
 }
