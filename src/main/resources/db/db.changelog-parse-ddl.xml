@@ -112,5 +112,23 @@
         </insert>
     </changeSet>
 
+    <changeSet id="1-devices_cost" author="gabriel_260388@hotmail.com" >
+        <insert tableName="devices_cost" schemaName="services">
+            <column name="id" type="BIGINT">1</column>
+            <column name="type_id" type="BIGINT">1</column>
+            <column name="cost" type="double">4</column>
+        </insert>
+        <insert tableName="devices_cost" schemaName="services">
+            <column name="id" type="BIGINT">2</column>
+            <column name="type_id" type="BIGINT">2</column>
+            <column name="cost" type="double">4</column>
+        </insert>
+        <insert tableName="devices_cost" schemaName="services">
+            <column name="id" type="BIGINT">3</column>
+            <column name="type_id" type="BIGINT">3</column>
+            <column name="cost" type="double">4</column>
+        </insert>
+    </changeSet>
+
 
 </databaseChangeLog>
