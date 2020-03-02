@@ -1,5 +1,6 @@
 package com.example.rmmservices.models;
 
+import com.example.rmmservices.models.ids.SmartServiceId;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,10 +17,16 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @Entity
 @Table(name = "smart_services", schema = "services")
+@IdClass(SmartServiceId.class)
 public class SmartService implements Serializable {
 
     @Id
-    private Long id;
+    @Column(name = "service_id", insertable = false, updatable = false)
+    private Long serviceId;
+
+    @Id
+    @Column(name = "type_id", insertable = false, updatable = false)
+    private Long deviceTypeId;
 
     @ManyToOne
     @JoinColumn(name = "service_id")

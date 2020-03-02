@@ -85,7 +85,7 @@
                        tableName="devices"/>
     </changeSet>
 
-    <changeSet author="liquibase-docs" id="1-fk-devices">
+    <changeSet author="gabriel_260388@hotmail.com" id="1-fk-devices">
         <addForeignKeyConstraint baseColumnNames="type_id"
                                  baseTableName="devices"
                                  baseTableSchemaName="services"
@@ -124,6 +124,59 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+    </changeSet>
+
+    <changeSet id="1-smart_services" author="gabriel_260388@hotmail.com" context="createtable">
+        <preConditions onFail="CONTINUE">
+            <not>
+                <tableExists tableName="smart_services" schemaName="services"/>
+            </not>
+        </preConditions>
+        <createTable tableName="smart_services" schemaName="services">
+            <column name="service_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cost" type="double">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="gabriel_260388@hotmail.com" id="1-primary-key-service_id">
+        <addPrimaryKey columnNames="type_id, service_id"
+                       constraintName="pk_smart_services"
+                       schemaName="services"
+                       tableName="smart_services"/>
+    </changeSet>
+
+    <changeSet id="1-fk-smart_services" author="gabriel_260388@hotmail.com">
+        <addForeignKeyConstraint baseColumnNames="service_id"
+                                 baseTableName="smart_services"
+                                 baseTableSchemaName="services"
+                                 constraintName="fk_smart_services_services"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="services"
+                                 referencedTableSchemaName="services"/>
+
+        <addForeignKeyConstraint baseColumnNames="type_id"
+                                 baseTableName="smart_services"
+                                 baseTableSchemaName="services"
+                                 constraintName="fk_smart_services_devices_services"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="devices_type"
+                                 referencedTableSchemaName="services"/>
+
     </changeSet>
 
 </databaseChangeLog>

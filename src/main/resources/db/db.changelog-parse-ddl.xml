@@ -46,5 +46,71 @@
         </insert>
     </changeSet>
 
+    <changeSet id="1-insert-smart-services" author="gabriel_260388@hotmail.com" >
+        <insert tableName="smart_services" schemaName="services">
+            <column name="service_id" type="BIGINT">1</column>
+            <column name="type_id" type="BIGINT">1</column>
+            <column name="cost" type="double">5</column>
+        </insert>
+        <insert tableName="smart_services" schemaName="services">
+            <column name="service_id" type="BIGINT">1</column>
+            <column name="type_id" type="BIGINT">2</column>
+            <column name="cost" type="double">5</column>
+        </insert>
+        <insert tableName="smart_services" schemaName="services">
+            <column name="service_id" type="BIGINT">1</column>
+            <column name="type_id" type="BIGINT">3</column>
+            <column name="cost" type="double">7</column>
+        </insert>
+
+        <insert tableName="smart_services" schemaName="services">
+            <column name="service_id" type="BIGINT">2</column>
+            <column name="type_id" type="BIGINT">1</column>
+            <column name="cost" type="double">3</column>
+        </insert>
+        <insert tableName="smart_services" schemaName="services">
+            <column name="service_id" type="BIGINT">2</column>
+            <column name="type_id" type="BIGINT">2</column>
+            <column name="cost" type="double">3</column>
+        </insert>
+        <insert tableName="smart_services" schemaName="services">
+            <column name="service_id" type="BIGINT">2</column>
+            <column name="type_id" type="BIGINT">3</column>
+            <column name="cost" type="double">3</column>
+        </insert>
+
+        <insert tableName="smart_services" schemaName="services">
+            <column name="service_id" type="BIGINT">3</column>
+            <column name="type_id" type="BIGINT">1</column>
+            <column name="cost" type="double">2</column>
+        </insert>
+        <insert tableName="smart_services" schemaName="services">
+            <column name="service_id" type="BIGINT">3</column>
+            <column name="type_id" type="BIGINT">2</column>
+            <column name="cost" type="double">2</column>
+        </insert>
+        <insert tableName="smart_services" schemaName="services">
+            <column name="service_id" type="BIGINT">3</column>
+            <column name="type_id" type="BIGINT">3</column>
+            <column name="cost" type="double">2</column>
+        </insert>
+
+        <insert tableName="smart_services" schemaName="services">
+            <column name="service_id" type="BIGINT">4</column>
+            <column name="type_id" type="BIGINT">1</column>
+            <column name="cost" type="double">1</column>
+        </insert>
+        <insert tableName="smart_services" schemaName="services">
+            <column name="service_id" type="BIGINT">4</column>
+            <column name="type_id" type="BIGINT">2</column>
+            <column name="cost" type="double">1</column>
+        </insert>
+        <insert tableName="smart_services" schemaName="services">
+            <column name="service_id" type="BIGINT">4</column>
+            <column name="type_id" type="BIGINT">3</column>
+            <column name="cost" type="double">1</column>
+        </insert>
+    </changeSet>
+
 
 </databaseChangeLog>
