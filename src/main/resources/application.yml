@@ -2,7 +2,7 @@ spring:
   application:
     name: rmm-service
   profiles:
-    active: prod
+    active: des
   datasource:
     url: jdbc:postgresql://${PG_HOST:localhost}:5432/${PG_DATABASE:rmm-services}
     username: ${PG_USERNAME:postgres}

@@ -1,5 +1,6 @@
 package com.example.rmmservices.controllers;
 
+import com.example.rmmservices.services.queries.CostQueryServices;
 import com.example.rmmservices.services.queries.DeviceQueryService;
 import com.example.rmmservices.services.queries.ServiceQueryService;
 import com.example.rmmservices.services.queries.dtos.DeviceDTO;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Slf4j
@@ -23,10 +25,13 @@ public class CustomerController {
 
     private final DeviceQueryService deviceQueryService;
 
+    private final CostQueryServices costQueryServices;
+
     @Autowired
-    public CustomerController(ServiceQueryService serviceQueryService, DeviceQueryService deviceQueryService) {
+    public CustomerController(ServiceQueryService serviceQueryService, DeviceQueryService deviceQueryService, CostQueryServices costQueryServices) {
         this.serviceQueryService = serviceQueryService;
         this.deviceQueryService = deviceQueryService;
+        this.costQueryServices = costQueryServices;
     }
 
     @GetMapping("/{customerId}/services")
@@ -41,6 +46,13 @@ public class CustomerController {
         log.info("getting services {}", customerId);
 
         return ResponseEntity.ok(deviceQueryService.findByCustomerId(customerId));
+    }
+
+    @GetMapping("/{customerId}/monthlyCost")
+    public ResponseEntity<BigDecimal> computeMonthlyCostByCustomerId(@PathVariable Long customerId) {
+        log.info("getting services {}", customerId);
+
+        return ResponseEntity.ok(costQueryServices.computeMonthlyCost(customerId));
     }
 
 }
