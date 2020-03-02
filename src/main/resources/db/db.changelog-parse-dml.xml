@@ -110,4 +110,20 @@
                                  referencedTableSchemaName="services"/>
     </changeSet>
 
+    <changeSet id="1-services" author="gabriel_260388@hotmail.com" context="createtable">
+        <preConditions onFail="CONTINUE">
+            <not>
+                <tableExists tableName="services" schemaName="services"/>
+            </not>
+        </preConditions>
+        <createTable tableName="services" schemaName="services">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>

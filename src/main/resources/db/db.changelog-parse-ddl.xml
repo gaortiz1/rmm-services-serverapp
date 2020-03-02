@@ -27,4 +27,24 @@
         </insert>
     </changeSet>
 
+    <changeSet id="1-insert-services" author="gabriel_260388@hotmail.com" >
+        <insert tableName="services" schemaName="services">
+            <column name="id" type="BIGINT">1</column>
+            <column name="name">Antivirus</column>
+        </insert>
+        <insert tableName="services" schemaName="services">
+            <column name="id" type="BIGINT">2</column>
+            <column name="name">Cloudberry</column>
+        </insert>
+        <insert tableName="services" schemaName="services">
+            <column name="id" type="BIGINT">3</column>
+            <column name="name">PSA</column>
+        </insert>
+        <insert tableName="services" schemaName="services">
+            <column name="id" type="BIGINT">4</column>
+            <column name="name">TeamViewer</column>
+        </insert>
+    </changeSet>
+
+
 </databaseChangeLog>
