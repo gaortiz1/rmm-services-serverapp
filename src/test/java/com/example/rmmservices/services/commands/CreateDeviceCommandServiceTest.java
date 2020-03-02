@@ -1,4 +1,4 @@
-package com.example.rmmservices.services;
+package com.example.rmmservices.services.commands;
 
 import com.example.rmmservices.exceptions.CustomerNotFoundException;
 import com.example.rmmservices.exceptions.DeviceTypeNotFoundException;
@@ -8,7 +8,7 @@ import com.example.rmmservices.models.DeviceType;
 import com.example.rmmservices.repositories.CustomerRepository;
 import com.example.rmmservices.repositories.DeviceRepository;
 import com.example.rmmservices.repositories.DeviceTypeRepository;
-import com.example.rmmservices.services.commands.CreateDeviceService;
+import com.example.rmmservices.services.commands.CreateDeviceCommandService;
 import com.example.rmmservices.services.commands.dtos.NewDeviceDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,10 +25,10 @@ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-class CreateDeviceServiceTest {
+class CreateDeviceCommandServiceTest {
 
     @InjectMocks
-    private CreateDeviceService createDeviceService;
+    private CreateDeviceCommandService createDeviceCommandService;
 
     @Mock
     private DeviceTypeRepository deviceTypeRepository;
@@ -48,7 +48,7 @@ class CreateDeviceServiceTest {
         when(this.customerRepository.findById(anyLong())).thenReturn(Optional.of(newCustomer("customer one")));
         when(this.deviceTypeRepository.findById(anyLong())).thenReturn(Optional.of(newWindowsWorkstation()));
 
-        createDeviceService.handle(new NewDeviceDTO("pc-one", 1l, 1l));
+        createDeviceCommandService.handle(new NewDeviceDTO("pc-one", 1l, 1l));
 
         verify(deviceRepository).save(deviceCaptor.capture());
         assertAll("assert ",
@@ -64,7 +64,7 @@ class CreateDeviceServiceTest {
         when(this.customerRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         assertThrows(CustomerNotFoundException.class,
-                () -> createDeviceService.handle(new NewDeviceDTO("pc-one", 1l, 1l)));
+                () -> createDeviceCommandService.handle(new NewDeviceDTO("pc-one", 1l, 1l)));
     }
 
     @Test
@@ -74,7 +74,7 @@ class CreateDeviceServiceTest {
         when(this.deviceTypeRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         assertThrows(DeviceTypeNotFoundException.class,
-                () -> createDeviceService.handle(new NewDeviceDTO("pc-one", 1l, 1l)));
+                () -> createDeviceCommandService.handle(new NewDeviceDTO("pc-one", 1l, 1l)));
     }
 
     private Customer newCustomer(String name) {

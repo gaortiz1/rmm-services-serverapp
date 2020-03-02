@@ -179,4 +179,56 @@
 
     </changeSet>
 
+    <changeSet id="1-customer_services" author="gabriel_260388@hotmail.com" context="createtable">
+        <preConditions onFail="CONTINUE">
+            <not>
+                <tableExists tableName="customer_services" schemaName="services"/>
+            </not>
+        </preConditions>
+        <createTable tableName="customer_services" schemaName="services">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="service_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement columnDataType="BIGINT"
+                          columnName="id"
+                          incrementBy="1"
+                          schemaName="services"
+                          startWith="100"
+                          tableName="customer_services"/>
+    </changeSet>
+
+    <changeSet id="1-fk-scustomer_services" author="gabriel_260388@hotmail.com">
+        <addForeignKeyConstraint baseColumnNames="service_id"
+                                 baseTableName="customer_services"
+                                 baseTableSchemaName="services"
+                                 constraintName="fk_customer_services"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="services"
+                                 referencedTableSchemaName="services"/>
+
+        <addForeignKeyConstraint baseColumnNames="customer_id"
+                                 baseTableName="customer_services"
+                                 baseTableSchemaName="services"
+                                 constraintName="fk_customer_services_customers"
+                                 deferrable="true"
+                                 initiallyDeferred="true"
+                                 onDelete="CASCADE"
+                                 onUpdate="RESTRICT"
+                                 referencedColumnNames="id"
+                                 referencedTableName="customers"
+                                 referencedTableSchemaName="services"/>
+
+    </changeSet>
+
 </databaseChangeLog>

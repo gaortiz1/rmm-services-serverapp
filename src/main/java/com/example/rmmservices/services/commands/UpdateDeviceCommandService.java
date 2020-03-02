@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-public class UpdateDeviceService implements CommandService<UpdateDeviceDTO> {
+public class UpdateDeviceCommandService implements CommandService<UpdateDeviceDTO> {
 
     private final DeviceRepository deviceRepository;
 
     @Autowired
-    public UpdateDeviceService(DeviceRepository deviceRepository) {
+    public UpdateDeviceCommandService(DeviceRepository deviceRepository) {
         this.deviceRepository = deviceRepository;
     }
 

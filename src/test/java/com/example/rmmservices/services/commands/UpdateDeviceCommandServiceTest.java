@@ -1,9 +1,9 @@
-package com.example.rmmservices.services;
+package com.example.rmmservices.services.commands;
 
 import com.example.rmmservices.exceptions.DeviceNotFoundException;
 import com.example.rmmservices.models.Device;
 import com.example.rmmservices.repositories.DeviceRepository;
-import com.example.rmmservices.services.commands.UpdateDeviceService;
+import com.example.rmmservices.services.commands.UpdateDeviceCommandService;
 import com.example.rmmservices.services.commands.dtos.UpdateDeviceDTO;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,14 +19,15 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class UpdateDeviceServiceTest {
+class UpdateDeviceCommandServiceTest {
 
     @InjectMocks
-    private UpdateDeviceService updateDeviceService;
+    private UpdateDeviceCommandService updateDeviceCommandService;
 
     @Mock
     private DeviceRepository deviceRepository;
@@ -36,10 +37,10 @@ class UpdateDeviceServiceTest {
 
     @Test
     void shouldUpdateDeviceWhenItExists() {
-        UUID deviceId = UUID.randomUUID();
-        when(this.deviceRepository.findById(any(UUID.class))).thenReturn(Optional.of(currentDevice(deviceId)));
+        Long deviceId = 1l;
+        when(this.deviceRepository.findById(deviceId)).thenReturn(Optional.of(currentDevice(deviceId)));
 
-        this.updateDeviceService.handle(new UpdateDeviceDTO(deviceId, "new-pc-home"));
+        this.updateDeviceCommandService.handle(new UpdateDeviceDTO(deviceId, "new-pc-home"));
 
         verify(this.deviceRepository).save(deviceCaptor.capture());
         assertEquals("new-pc-home", deviceCaptor.getValue().getSystemName());
@@ -48,13 +49,13 @@ class UpdateDeviceServiceTest {
     @Test
     void shouldNotUpdateDeviceWhenItNotExists() {
 
-        when(this.deviceRepository.findById(any(UUID.class))).thenReturn(Optional.empty());
+        when(this.deviceRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         assertThrows(DeviceNotFoundException.class,
-                () -> updateDeviceService.handle(new UpdateDeviceDTO(UUID.randomUUID(), "new-pc-home")));
+                () -> updateDeviceCommandService.handle(new UpdateDeviceDTO(anyLong(), "new-pc-home")));
     }
 
-    private Device currentDevice(UUID id) {
+    private Device currentDevice(Long id) {
         return Device.builder()
                 .id(id)
                 .systemName("pc-one")

@@ -10,12 +10,12 @@ import java.util.UUID;
 
 @Slf4j
 @Service
-public class DeleteDeviceService implements CommandService<Long> {
+public class DeleteDeviceCommandService implements CommandService<Long> {
 
     private final DeviceRepository deviceRepository;
 
     @Autowired
-    public DeleteDeviceService(DeviceRepository deviceRepository) {
+    public DeleteDeviceCommandService(DeviceRepository deviceRepository) {
         this.deviceRepository = deviceRepository;
     }
 

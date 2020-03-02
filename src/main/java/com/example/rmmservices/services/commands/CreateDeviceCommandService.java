@@ -17,7 +17,7 @@ import javax.validation.Valid;
 
 @Slf4j
 @Service
-public class CreateDeviceService implements CommandService<NewDeviceDTO> {
+public class CreateDeviceCommandService implements CommandService<NewDeviceDTO> {
 
     private final DeviceTypeRepository deviceTypeRepository;
 
@@ -26,7 +26,7 @@ public class CreateDeviceService implements CommandService<NewDeviceDTO> {
     private final DeviceRepository deviceRepository;
 
     @Autowired
-    public CreateDeviceService(DeviceTypeRepository deviceTypeRepository, CustomerRepository customerRepository, DeviceRepository deviceRepository) {
+    public CreateDeviceCommandService(DeviceTypeRepository deviceTypeRepository, CustomerRepository customerRepository, DeviceRepository deviceRepository) {
         this.deviceTypeRepository = deviceTypeRepository;
         this.customerRepository = customerRepository;
         this.deviceRepository = deviceRepository;
