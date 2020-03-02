@@ -1,7 +1,6 @@
 package com.example.rmmservices.services.commands;
 
 import com.example.rmmservices.exceptions.CustomerNotFoundException;
-import com.example.rmmservices.exceptions.DeviceTypeNotFoundException;
 import com.example.rmmservices.exceptions.ServiceNotFoundException;
 import com.example.rmmservices.models.Customer;
 import com.example.rmmservices.models.CustomerService;
