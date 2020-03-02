@@ -1,6 +1,8 @@
 package com.example.rmmservices.controllers;
 
-import com.example.rmmservices.services.queries.ServiceQuery;
+import com.example.rmmservices.services.queries.DeviceQueryService;
+import com.example.rmmservices.services.queries.ServiceQueryService;
+import com.example.rmmservices.services.queries.dtos.DeviceDTO;
 import com.example.rmmservices.services.queries.dtos.ServiceDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +19,28 @@ import java.util.List;
 @RequestMapping("customers")
 public class CustomerController {
 
-    private final ServiceQuery serviceQuery;
+    private final ServiceQueryService serviceQueryService;
+
+    private final DeviceQueryService deviceQueryService;
 
     @Autowired
-    public CustomerController(ServiceQuery serviceQuery) {
-        this.serviceQuery = serviceQuery;
+    public CustomerController(ServiceQueryService serviceQueryService, DeviceQueryService deviceQueryService) {
+        this.serviceQueryService = serviceQueryService;
+        this.deviceQueryService = deviceQueryService;
     }
 
     @GetMapping("/{customerId}/services")
-    public ResponseEntity<List<ServiceDTO>> findByCustomerId(@PathVariable Long customerId) {
+    public ResponseEntity<List<ServiceDTO>> findServicesByCustomerId(@PathVariable Long customerId) {
         log.info("getting services {}", customerId);
 
-        return ResponseEntity.ok(serviceQuery.findByCustomerId(customerId));
+        return ResponseEntity.ok(serviceQueryService.findByCustomerId(customerId));
     }
+
+    @GetMapping("/{customerId}/devices")
+    public ResponseEntity<List<DeviceDTO>> findDevicesByCustomerId(@PathVariable Long customerId) {
+        log.info("getting services {}", customerId);
+
+        return ResponseEntity.ok(deviceQueryService.findByCustomerId(customerId));
+    }
+
 }

@@ -7,6 +7,8 @@ import com.example.rmmservices.services.queries.mappers.DeviceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DeviceQueryService {
 
@@ -20,5 +22,9 @@ public class DeviceQueryService {
     public DeviceDTO findById(Long id) {
         return DeviceMapper.toDTO(this.deviceRepository.findById(id)
                 .orElse(Device.builder().build()));
+    }
+
+    public List<DeviceDTO> findByCustomerId(Long customerId) {
+        return DeviceMapper.toDTO(this.deviceRepository.findByCustomer_Id(customerId));
     }
 }

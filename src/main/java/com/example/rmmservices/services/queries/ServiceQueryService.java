@@ -10,12 +10,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ServiceQuery {
+public class ServiceQueryService {
 
     private final CustomerServiceRepository customerServiceRepository;
 
     @Autowired
-    public ServiceQuery(CustomerServiceRepository customerServiceRepository) {
+    public ServiceQueryService(CustomerServiceRepository customerServiceRepository) {
         this.customerServiceRepository = customerServiceRepository;
     }
 
