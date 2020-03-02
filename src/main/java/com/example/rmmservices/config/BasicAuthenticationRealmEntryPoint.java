@@ -15,13 +15,13 @@ public class BasicAuthenticationRealmEntryPoint extends BasicAuthenticationEntry
 
     @Override
     public void afterPropertiesSet() {
-        setRealmName("custom-edrb");
+        setRealmName("basic realm");
         super.afterPropertiesSet();
     }
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
-        response.addHeader("WWW-Authenticate", "Basic realm=\"" + getRealmName() + "\"");
+        response.addHeader("Authorization", "Basic realm=\"" + getRealmName() + "\"");
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         final PrintWriter writer = response.getWriter();
         writer.println("HTTP Status " + HttpServletResponse.SC_UNAUTHORIZED + " - " + authException.getMessage());
